@@ -52,8 +52,23 @@ public class StudentDeoImpl implements StudentDao{
 
 	@Override
 	public Student search(String sid) {
-		// TODO Auto-generated method stub
-		return null;
+		Student student = null;
+		try {
+			Connection con = dataSource.getConnection();
+			PreparedStatement ps = con.prepareStatement("select * from student where sid=?");
+			ps.setString(1, sid);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+			student = new Student();
+			student.setSid(rs.getString(1));
+			student.setSname(rs.getString(2));
+			student.setSaddr(rs.getString(3));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return student;
 	}
 
 	@Override

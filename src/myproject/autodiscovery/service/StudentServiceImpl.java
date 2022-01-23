@@ -14,14 +14,12 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Override
 	public String addStudent(Student student) {
-		String status = studentDao.add(student);
-		return status;
+		return studentDao.add(student);
 	}
 
 	@Override
 	public Student searchStudent(String sid) {
-		// TODO Auto-generated method stub
-		return null;
+		return studentDao.search(sid);
 	}
 
 	@Override
