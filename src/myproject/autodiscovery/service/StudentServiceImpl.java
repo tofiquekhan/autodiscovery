@@ -31,8 +31,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public String deleteStudent(String sid) {
-		// TODO Auto-generated method stub
-		return null;
+		return studentDao.delete(sid);
 	}
 
 }

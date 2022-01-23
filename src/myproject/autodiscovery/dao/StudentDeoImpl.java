@@ -94,8 +94,20 @@ public class StudentDeoImpl implements StudentDao{
 
 	@Override
 	public String delete(String sid) {
-		// TODO Auto-generated method stub
-		return null;
+		String status = "failure";
+		try {
+			Connection con = dataSource.getConnection();
+			PreparedStatement ps = con.prepareStatement("delete from student where sid=?");
+			ps.setString(1, sid);
+			int row = ps.executeUpdate();
+			if(row==1) {
+				status="success";
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return status;
 	}
 
 }
