@@ -22,16 +22,11 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.search(sid);
 	}
 
-	@Override
-	public Student getStudent(String sid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public String updateStudent(Student student) {
-		// TODO Auto-generated method stub
-		return null;
+		return studentDao.update(student);
 	}
 
 	@Override

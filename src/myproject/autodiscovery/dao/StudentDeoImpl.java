@@ -73,8 +73,23 @@ public class StudentDeoImpl implements StudentDao{
 
 	@Override
 	public String update(Student student) {
-		// TODO Auto-generated method stub
-		return null;
+		String status = "failure";
+		try {
+			Connection con = dataSource.getConnection();
+			PreparedStatement ps = con.prepareStatement("update student set sname=?, saddr=? where sid=?");
+			ps.setString(1, student.getSname());
+			ps.setString(2, student.getSaddr());
+			ps.setString(3, student.getSid());
+			int row = ps.executeUpdate();
+			if(row==1) {
+				status = "success";
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return status;
 	}
 
 	@Override

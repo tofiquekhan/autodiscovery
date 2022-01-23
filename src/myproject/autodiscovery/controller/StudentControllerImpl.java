@@ -79,8 +79,27 @@ public class StudentControllerImpl implements StudentController {
 	@Override
 	public void updateStudent() {
 
-		try {
-
+		try { 
+			System.out.print("Student Id 	: ") ;
+			String sid = br.readLine();
+			Student student = studentService.searchStudent(sid);
+			if(student==null) {
+				System.out.println("Student Not Existed");
+			}else {
+				System.out.println("Student Id 	: "+student.getSid());	
+				System.out.print("Student Name : Old Value : "+student.getSname()+" New Value : ");
+				String sname = br.readLine();
+				System.out.print("Student Address : Old Value : "+student.getSaddr()+" New Value : ");
+				String saddr = br.readLine();
+				student.setSname(sname);
+				student.setSaddr(saddr);
+				String status = studentService.updateStudent(student);
+				if(status.equals("success")) {
+					System.out.println("Student Updation Success");
+				}else {
+					System.out.println("Student Updation Failure");
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
